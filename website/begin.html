@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Begin — Orbisojas</title>
+  <meta name="description" content="Enter the Mirror. Before it can reflect, it needs to know who is standing in front of it.">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="page-begin">
+
+  <div id="grain-overlay"></div>
+  <div id="cursor"></div>
+  <div id="cursorRing"></div>
+
+  <nav class="site-nav">
+    <a href="index.html" class="nav-logo">Orbisojas</a>
+    <button class="nav-toggle" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+    <ul class="nav-links">
+      <li><a href="mirror.html">Mirror</a></li>
+      <li><a href="journey.html">Journey</a></li>
+      <li><a href="framework.html">Framework</a></li>
+    </ul>
+  </nav>
+
+  <div class="begin-wrap">
+
+    <div class="begin-header">
+      <h1>Begin</h1>
+      <p>Before the Mirror can reflect, it needs to know who is standing in front of it.</p>
+    </div>
+
+    <form class="begin-form" id="mirror-entry">
+
+      <div class="form-group">
+        <label class="form-label" for="name">Your name</label>
+        <input type="text" id="name" name="name" class="form-input" placeholder="First name" required>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label" for="dob">Date of birth</label>
+        <input type="date" id="dob" name="dob" class="form-input" required>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label" for="birthplace">Place of birth</label>
+          <input type="text" id="birthplace" name="birthplace" class="form-input" placeholder="City, Country" required>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="birthtime">Time of birth <span class="optional">(if known)</span></label>
+          <input type="time" id="birthtime" name="birthtime" class="form-input">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label" for="email">Email</label>
+        <input type="email" id="email" name="email" class="form-input" placeholder="Where we send your Mirror output" required>
+      </div>
+
+      <p class="begin-note">We ask for birth data because the Mirror includes a timing layer &mdash; we'll explain after the first two questions have done their work.</p>
+
+      <div class="begin-submit">
+        <button type="submit" class="btn btn--filled"><span>Enter the Mirror</span><span class="btn-arrow">&rarr;</span></button>
+      </div>
+
+    </form>
+
+  </div>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
