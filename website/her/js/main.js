@@ -77,24 +77,24 @@ function animateCounter(el, duration) {
 }
 
 /* ============================================================
-   SCENE 01 — THE BOY
+   SCENE 01 — THE GIRL
    Fade from deep. Slow. Intimate. Notification pops.
    ============================================================ */
 (function() {
   var tl = gsap.timeline({
-    scrollTrigger: { trigger: '#boy', start: 'top 80%', once: true }
+    scrollTrigger: { trigger: '#girl', start: 'top 80%', once: true }
   });
 
-  tl.to('#boy .scene-panel', { opacity: 1, duration: 1.2, ease: 'power2.out' })
-    .from('#boy .scene-num', { opacity: 0, y: 16, duration: 0.8, ease: 'power2.out' }, '-=0.6')
-    .from('#boy .scene-title', { opacity: 0, y: 16, duration: 0.8, ease: 'power2.out' }, '-=0.4');
+  tl.to('#girl .scene-panel', { opacity: 1, duration: 1.2, ease: 'power2.out' })
+    .from('#girl .scene-num', { opacity: 0, y: 16, duration: 0.8, ease: 'power2.out' }, '-=0.6')
+    .from('#girl .scene-title', { opacity: 0, y: 16, duration: 0.8, ease: 'power2.out' }, '-=0.4');
 
   ScrollTrigger.create({
-    trigger: '#boy',
+    trigger: '#girl',
     start: 'top 60%',
     once: true,
     onEnter: function() {
-      gsap.to('#boy .scene-lead .word', {
+      gsap.to('#girl .scene-lead .word', {
         opacity: 1, y: 0,
         duration: 0.4,
         stagger: 0.08,
@@ -103,20 +103,20 @@ function animateCounter(el, duration) {
     }
   });
 
-  gsap.utils.toArray('#boy .scene-whisper').forEach(function(el, i) {
+  gsap.utils.toArray('#girl .scene-whisper').forEach(function(el, i) {
     gsap.from(el, {
       opacity: 0, y: 12,
       duration: 1,
       delay: 0.3 * i,
       ease: 'power2.out',
-      scrollTrigger: { trigger: '#boy', start: 'top 45%', once: true }
+      scrollTrigger: { trigger: '#girl', start: 'top 45%', once: true }
     });
   });
 
   // Floating tags — pop in with notification style + ping dots
   gsap.utils.toArray('.ftag').forEach(function(tag, i) {
     ScrollTrigger.create({
-      trigger: '#boy',
+      trigger: '#girl',
       start: 'top 70%',
       once: true,
       onEnter: function() {
@@ -148,7 +148,7 @@ function animateCounter(el, duration) {
     duration: 2,
     delay: 3,
     ease: 'power2.out',
-    scrollTrigger: { trigger: '#boy', start: 'top 50%', once: true },
+    scrollTrigger: { trigger: '#girl', start: 'top 50%', once: true },
     onComplete: function() {
       gsap.to('.clock-label', {
         opacity: 0.3,
