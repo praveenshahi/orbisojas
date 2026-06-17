@@ -23,7 +23,7 @@ document.querySelectorAll('[data-reveal]').forEach(function(el) {
   window.addEventListener('scroll', function() {
     var h = document.documentElement.scrollHeight - window.innerHeight;
     if (h > 0) fill.style.height = (window.scrollY / h * 100) + '%';
-  });
+  }, { passive: true });
 })();
 
 /* --- Nav scroll state --- */
@@ -39,7 +39,10 @@ ScrollTrigger.create({
   var btn = document.querySelector('.nav-toggle');
   var links = document.querySelector('.nav-links');
   if (!btn || !links) return;
-  btn.addEventListener('click', function() { links.classList.toggle('open'); });
+  btn.addEventListener('click', function() {
+    links.classList.toggle('open');
+    btn.setAttribute('aria-expanded', links.classList.contains('open'));
+  });
   links.querySelectorAll('a').forEach(function(a) {
     a.addEventListener('click', function() { links.classList.remove('open'); });
   });

@@ -1,42 +1,7 @@
 /* ============================================================
-   ORBISOJAS — Design System CSS
-   "Design as Descent" — light from below, text lives in scene
+   ORBISOJAS — Journey Page Styles
+   Tokens + core loaded via shared/css/tokens.css & core.css
    ============================================================ */
-
-:root {
-  --midnight: #0B0C1E;
-  --deep-blue: #141832;
-  --teal: #1A4A5C;
-  --amber: #C08A2C;
-  --rose: #C44858;
-  --cream: #D4A870;
-  --stone: #7A7A78;
-  --ink: #E8DCC8;
-  --ink-dim: #8A7D6A;
-  --flame: #C45E2A;
-  --ember: #E8834A;
-  --bg: #0B0C1E;
-  --section-border: #1a1e38;
-  --glass: rgba(11, 12, 30, 0.55);
-  --glass-border: rgba(80, 90, 140, 0.2);
-
-  --font-pixel: 'Press Start 2P', monospace;
-  --font-ui: 'Space Grotesk', sans-serif;
-
-  --ease: cubic-bezier(0.22, 1, 0.36, 1);
-}
-
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; }
-body {
-  font-family: var(--font-ui);
-  background: var(--bg);
-  color: var(--ink);
-  overflow-x: hidden;
-  -webkit-font-smoothing: antialiased;
-}
-a { color: inherit; text-decoration: none; }
-ul { list-style: none; }
 
 /* --- Descent Meter --- */
 .descent-meter {
@@ -88,14 +53,16 @@ ul { list-style: none; }
   gap: 10px;
   flex-shrink: 0;
 }
-.ojas-orb {
-  color: var(--rose);
-  font-size: 16px;
+.nav-logo-img {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  filter: drop-shadow(0 0 6px rgba(192,138,44,0.4));
   animation: warmPulse 4s ease-in-out infinite;
 }
 @keyframes warmPulse {
-  0%, 100% { filter: drop-shadow(0 0 4px rgba(196, 72, 88, 0.4)); }
-  50% { filter: drop-shadow(0 0 12px rgba(196, 72, 88, 0.8)); }
+  0%, 100% { filter: drop-shadow(0 0 4px rgba(192,138,44,0.3)); }
+  50% { filter: drop-shadow(0 0 12px rgba(192,138,44,0.7)); }
 }
 .nav-logo-text {
   font-family: var(--font-pixel);
@@ -130,6 +97,7 @@ ul { list-style: none; }
   transition: color 0.3s;
 }
 .nav-links a:hover { color: var(--ink); }
+.nav-links a.nav-active { color: var(--ink); border-bottom: 1px solid var(--amber); padding-bottom: 2px; }
 .nav-cta {
   font-family: var(--font-pixel);
   font-size: 7px;
@@ -176,17 +144,13 @@ ul { list-style: none; }
   background-position: center;
   background-repeat: no-repeat;
 }
-@supports (background-attachment: fixed) {
-  @media (min-width: 900px) {
-    .scene { background-attachment: fixed; }
-  }
-}
+/* background-attachment: fixed removed — GSAP parallax handles this, fixed causes repaint storms */
 
 /* --- Per-scene backgrounds and overlays --- */
-.scene-01 { background-image: url('../img/scene-01.png'); }
-.scene-02 { background-image: url('../img/scene-02.png'); }
-.scene-03 { background-image: url('../img/scene-03.png'); }
-.scene-04 { background-image: url('../img/scene-04.png'); }
+.scene-01 { background-image: url('../img/scene-01.webp'); }
+.scene-02.loaded { background-image: url('../img/scene-02.webp'); }
+.scene-03.loaded { background-image: url('../img/scene-03.webp'); }
+.scene-04.loaded { background-image: url('../img/scene-04.webp'); }
 
 .scene::before {
   content: '';
@@ -1050,28 +1014,34 @@ ul { list-style: none; }
   align-items: center;
   gap: 10px;
 }
+.footer-brand { display: flex; flex-direction: column; gap: 4px; }
 .footer-text {
-  font-family: var(--font-pixel);
-  font-size: 6px;
-  line-height: 2;
+  font-family: var(--font-body);
+  font-size: 9px;
+  line-height: 1.8;
   color: var(--ink-dim);
   letter-spacing: 0.5px;
-  text-align: center;
-  flex: 1;
 }
-.footer-social { display: flex; gap: 12px; }
+.footer-social { display: flex; gap: 10px; }
 .footer-social a {
-  width: 30px; height: 30px;
+  width: 34px; height: 34px;
   border: 1px solid var(--glass-border);
-  border-radius: 3px;
+  border-radius: 5px;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 13px;
   color: var(--ink-dim);
   transition: all 0.3s;
 }
-.footer-social a:hover { border-color: var(--amber); color: var(--amber); }
+.footer-social a:hover { border-color: var(--amber); color: var(--amber); background: rgba(192,138,44,0.06); }
+.footer-social svg { width: 16px; height: 16px; }
+.footer-logo-img {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  vertical-align: middle;
+  margin-right: 0.3rem;
+}
 
 /* ============================================================
    RESPONSIVE
@@ -1096,3 +1066,5 @@ ul { list-style: none; }
   .truth-col { padding: 14px; }
   .journey-cta { padding: 24px 18px; }
 }
+
+/* Skip-link, focus-visible, reduced-motion: in shared/css/core.css */

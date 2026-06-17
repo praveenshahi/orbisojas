@@ -5,29 +5,412 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Begin — Orbisojas</title>
   <meta name="description" content="Enter the Mirror. Before it can reflect, it needs to know who is standing in front of it.">
-  <link rel="stylesheet" href="css/style.css">
+
+  <!-- Favicon & Icons -->
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Begin — Orbisojas">
+  <meta property="og:description" content="Enter the Mirror. Before it can reflect, it needs to know who is standing in front of it.">
+  <meta property="og:image" content="https://orbisojas.com/og-image.jpg">
+  <meta property="og:url" content="https://orbisojas.com/begin.html">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Orbisojas">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Begin — Orbisojas">
+  <meta name="twitter:description" content="Enter the Mirror. Before it can reflect, it needs to know who is standing in front of it.">
+  <meta name="twitter:image" content="https://orbisojas.com/og-image.jpg">
+
+  <link rel="canonical" href="https://orbisojas.com/begin.html">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "Begin — Enter the Mirror",
+    "description": "Enter the Mirror. Before it can reflect, it needs to know who is standing in front of it.",
+    "url": "https://orbisojas.com/begin.html",
+    "isPartOf": {
+      "@type": "WebSite",
+      "name": "Orbisojas",
+      "url": "https://orbisojas.com/"
+    }
+  }
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Space+Grotesk:wght@300;400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="shared/css/tokens.css">
+  <link rel="stylesheet" href="shared/css/core.css">
+  <style>
+    /* ================================================
+       BEGIN PAGE — v2 Design System
+       ================================================ */
+
+    /* --- Nav (matches homepage) --- */
+    .nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      padding: 0 2rem;
+      background: rgba(11,12,30,0.92);
+      backdrop-filter: blur(16px);
+      box-shadow: 0 1px 0 rgba(192,138,44,0.1);
+    }
+    .nav-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 72px;
+    }
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+    .nav-logo-img {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      filter: drop-shadow(0 0 6px rgba(192,138,44,0.4));
+    }
+    .nav-logo-text {
+      font-family: var(--font-pixel);
+      font-size: 0.8rem;
+      letter-spacing: 0.15em;
+      color: var(--cream);
+    }
+    .nav-links {
+      display: flex;
+      gap: 1.6rem;
+    }
+    .nav-links a {
+      font-family: var(--font-pixel);
+      font-size: 0.5rem;
+      letter-spacing: 0.1em;
+      color: var(--ink-dim);
+      transition: color 0.3s ease;
+    }
+    .nav-links a:hover { color: var(--cream); }
+    .nav-cta {
+      font-family: var(--font-pixel);
+      font-size: 0.5rem;
+      letter-spacing: 0.1em;
+      color: var(--amber);
+      border: 1px solid var(--amber);
+      padding: 0.55rem 1.1rem;
+      background: var(--amber);
+      color: var(--midnight);
+    }
+    .nav-toggle {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 6px;
+    }
+    .nav-toggle span {
+      display: block;
+      width: 22px;
+      height: 2px;
+      background: var(--cream);
+      transition: all 0.3s ease;
+      transform-origin: center;
+    }
+    .nav.open .nav-links {
+      display: flex;
+      flex-direction: column;
+      position: absolute;
+      top: 60px;
+      left: 0; right: 0;
+      background: rgba(11,12,30,0.96);
+      backdrop-filter: blur(16px);
+      padding: 1.5rem 2rem 2rem;
+      gap: 1.4rem;
+      border-bottom: 1px solid rgba(192,138,44,0.15);
+    }
+    .nav.open .nav-toggle span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+    .nav.open .nav-toggle span:nth-child(2) { opacity: 0; }
+    .nav.open .nav-toggle span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+
+    /* --- Page layout --- */
+    .begin-wrap {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 7rem 2rem 4rem;
+      position: relative;
+    }
+
+    /* Ambient glow behind form */
+    .begin-wrap::before {
+      content: '';
+      position: absolute;
+      top: 30%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(ellipse, rgba(192,138,44,0.06) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    /* --- Header --- */
+    .begin-header {
+      text-align: center;
+      margin-bottom: 3rem;
+      position: relative;
+    }
+    .begin-label {
+      font-family: var(--font-pixel);
+      font-size: 0.5rem;
+      letter-spacing: 0.2em;
+      color: var(--amber);
+      margin-bottom: 1.2rem;
+      display: block;
+    }
+    .begin-header h1 {
+      font-family: var(--font-pixel);
+      font-size: clamp(1.2rem, 3.5vw, 1.8rem);
+      color: var(--cream);
+      line-height: 2;
+      letter-spacing: 0.08em;
+    }
+    .begin-header p {
+      font-family: var(--font-ui);
+      font-size: 0.85rem;
+      color: var(--ink-dim);
+      max-width: 42ch;
+      margin: 1.2rem auto 0;
+      line-height: 1.8;
+      font-weight: 300;
+    }
+
+    /* --- Glass panel form --- */
+    .begin-form {
+      width: 100%;
+      max-width: 520px;
+      background: var(--glass);
+      border: 1px solid var(--glass-border);
+      backdrop-filter: blur(24px);
+      border-radius: 12px;
+      padding: 2.5rem 2.5rem 2rem;
+      position: relative;
+    }
+
+    .form-group {
+      margin-bottom: 1.8rem;
+    }
+    .form-label {
+      display: block;
+      font-family: var(--font-pixel);
+      font-size: 0.45rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--ink-dim);
+      margin-bottom: 0.6rem;
+    }
+    .form-label .optional {
+      font-family: var(--font-ui);
+      text-transform: none;
+      letter-spacing: 0;
+      font-size: 0.65rem;
+      opacity: 0.5;
+    }
+    .form-input {
+      width: 100%;
+      background: transparent;
+      border: none;
+      border-bottom: 1px solid rgba(80,90,140,0.3);
+      padding: 0.75rem 0;
+      font-family: var(--font-ui);
+      font-size: 1rem;
+      font-weight: 300;
+      color: var(--ink);
+      outline: none;
+      border-radius: 0;
+      -webkit-appearance: none;
+      transition: border-color 0.3s ease;
+    }
+    .form-input:focus {
+      border-bottom-color: var(--amber);
+    }
+    .form-input::placeholder {
+      color: rgba(138,125,106,0.5);
+      font-style: italic;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+    }
+
+    .begin-note {
+      font-family: var(--font-ui);
+      font-size: 0.72rem;
+      font-style: italic;
+      color: var(--ink-dim);
+      text-align: center;
+      margin: 0.5rem 0 2rem;
+      line-height: 1.9;
+      font-weight: 300;
+      opacity: 0.7;
+    }
+
+    .begin-submit {
+      text-align: center;
+    }
+    .btn-mirror {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.8rem;
+      font-family: var(--font-pixel);
+      font-size: 0.55rem;
+      letter-spacing: 0.12em;
+      color: var(--midnight);
+      background: var(--amber);
+      border: 1px solid var(--amber);
+      padding: 0.9rem 2rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-transform: uppercase;
+    }
+    .btn-mirror:hover {
+      background: transparent;
+      color: var(--amber);
+      box-shadow: 0 0 24px rgba(192,138,44,0.25);
+    }
+    .btn-mirror .btn-arrow {
+      transition: transform 0.3s ease;
+    }
+    .btn-mirror:hover .btn-arrow {
+      transform: translateX(4px);
+    }
+
+    /* --- Footer (matches homepage) --- */
+    .site-footer {
+      border-top: 1px solid rgba(192,138,44,0.12);
+      padding: 2.2rem 2rem;
+      background: var(--midnight);
+    }
+    .footer-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .footer-logo {
+      font-family: var(--font-pixel);
+      font-size: 0.65rem;
+      letter-spacing: 0.12em;
+      color: var(--cream);
+      margin-bottom: 0.4rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .footer-text {
+      font-family: var(--font-ui);
+      font-size: 0.6rem;
+      color: var(--ink-dim);
+      letter-spacing: 0.06em;
+      line-height: 1.7;
+      font-weight: 300;
+    }
+    .footer-logo-img {
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      vertical-align: middle;
+      margin-right: 0.3rem;
+    }
+
+    /* --- Animations --- */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .begin-header {
+      animation: fadeUp 0.8s var(--ease) forwards;
+    }
+    .begin-form {
+      opacity: 0;
+      animation: fadeUp 0.8s var(--ease) 0.3s forwards;
+    }
+
+    /* --- Responsive --- */
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .nav-cta { display: none; }
+      .nav-toggle { display: flex; }
+      .nav.open .nav-cta {
+        display: block;
+        text-align: center;
+        margin-top: 0.5rem;
+      }
+
+      .begin-wrap {
+        padding: 6rem 1.5rem 3rem;
+      }
+      .begin-form {
+        padding: 2rem 1.5rem 1.5rem;
+      }
+      .form-row {
+        grid-template-columns: 1fr;
+        gap: 0;
+      }
+      .footer-inner {
+        flex-direction: column;
+        text-align: center;
+        gap: 1rem;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .begin-header, .begin-form {
+        animation: none;
+        opacity: 1;
+      }
+    }
+  </style>
 </head>
-<body class="page-begin">
+<body>
 
-  <div id="grain-overlay"></div>
-  <div id="cursor"></div>
-  <div id="cursorRing"></div>
+  <!-- Skip to content -->
+  <a href="#mirror-entry" class="skip-link">Skip to content</a>
 
-  <nav class="site-nav">
-    <a href="index.html" class="nav-logo">Orbisojas</a>
-    <button class="nav-toggle" aria-label="Menu">
-      <span></span><span></span><span></span>
-    </button>
-    <ul class="nav-links">
-      <li><a href="mirror.html">Mirror</a></li>
-      <li><a href="journey.html">Journey</a></li>
-      <li><a href="framework.html">Framework</a></li>
-    </ul>
+  <!-- Navigation -->
+  <nav class="nav">
+    <div class="nav-inner">
+      <a href="home/" class="nav-logo">
+        <img src="logo-icon.png" alt="Orbisojas" class="nav-logo-img" width="28" height="28">
+        <span class="nav-logo-text">ORBISOJAS</span>
+      </a>
+      <div class="nav-links">
+        <a href="template/">HIS JOURNEY</a>
+        <a href="her/">HER JOURNEY</a>
+      </div>
+      <a href="begin.html" class="nav-cta">ENTER MIRROR</a>
+      <button class="nav-toggle" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
+    </div>
   </nav>
 
+  <!-- Begin / Mirror Entry -->
   <div class="begin-wrap">
 
     <div class="begin-header">
+      <span class="begin-label">&#10022; THE MIRROR &#10022;</span>
       <h1>Begin</h1>
       <p>Before the Mirror can reflect, it needs to know who is standing in front of it.</p>
     </div>
@@ -63,13 +446,36 @@
       <p class="begin-note">We ask for birth data because the Mirror includes a timing layer &mdash; we'll explain after the first two questions have done their work.</p>
 
       <div class="begin-submit">
-        <button type="submit" class="btn btn--filled"><span>Enter the Mirror</span><span class="btn-arrow">&rarr;</span></button>
+        <button type="submit" class="btn-mirror"><span>Enter the Mirror</span><span class="btn-arrow">&rarr;</span></button>
       </div>
 
     </form>
 
   </div>
 
-  <script src="js/main.js"></script>
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <div class="footer-logo"><img src="logo-icon.png" alt="" class="footer-logo-img" width="22" height="22"> ORBISOJAS</div>
+        <p class="footer-text">A NAVIGATION SYSTEM FOR THE MODERN HUMAN.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    /* Mobile nav toggle */
+    (function() {
+      var btn = document.querySelector('.nav-toggle');
+      var nav = document.querySelector('.nav');
+      var links = document.querySelector('.nav-links');
+      if (!btn || !links) return;
+      btn.addEventListener('click', function() {
+        var isOpen = links.classList.toggle('open');
+        if (nav) nav.classList.toggle('open', isOpen);
+        btn.setAttribute('aria-expanded', isOpen);
+      });
+    })();
+  </script>
 </body>
 </html>

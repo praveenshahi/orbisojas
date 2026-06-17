@@ -1,0 +1,42 @@
+/* ============================================================
+   ORBISOJAS — Design Tokens
+   Single source of truth for all pages
+   ============================================================ */
+
+:root {
+  /* Backgrounds */
+  --midnight: #0B0C1E;
+  --deep-blue: #141832;
+  --bg: #0B0C1E;
+  --section-border: #1a1e38;
+  --glass: rgba(11, 12, 30, 0.55);
+  --glass-border: rgba(80, 90, 140, 0.2);
+
+  /* Text */
+  --ink: #E8DCC8;
+  --ink-dim: #8A7D6A;
+
+  /* Accents */
+  --teal: #1A4A5C;
+  --amber: #C08A2C;
+  --amber-glow: rgba(192,138,44,0.35);
+  --rose: #C44858;
+  --cream: #D4A870;
+  --stone: #7A7A78;
+  --flame: #C45E2A;
+  --ember: #E8834A;
+
+  /* Typography */
+  --font-pixel: 'Press Start 2P', monospace;
+  --font-ui: 'Space Grotesk', sans-serif;
+
+  /* Motion */
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+
+  /* Legacy aliases — homepage uses these */
+  --text: var(--ink);
+  --text-dim: var(--ink-dim);
+  --deep: var(--deep-blue);
+  --pixel: var(--font-pixel);
+  --body: var(--font-ui);
+}
