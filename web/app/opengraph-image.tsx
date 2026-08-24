@@ -4,6 +4,9 @@ export const alt = "Orbis Ojas — See the pattern behind your repeating questio
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
+/* Required by `output: "export"`: the card is rendered once at build time. */
+export const dynamic = "force-static";
+
 /**
  * Generated at build time, so the share card can never drift from the brand.
  * Kept to system serif rather than fetching a font binary — the card is

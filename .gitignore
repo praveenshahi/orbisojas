@@ -20,3 +20,7 @@ vm-deploy-reference.md
 # OS noise
 .DS_Store
 Thumbs.db
+
+# Deploy artefacts generated locally
+web/orbisojas-v3.tar.gz
+web/nginx-current.conf

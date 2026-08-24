@@ -3,6 +3,10 @@ import { SITE } from "@/constants/nav";
 import { atlasEntries } from "@/content/atlas";
 import { insights } from "@/content/insights";
 
+/* Required by `output: "export"` — the file is generated once at build
+   time rather than served by a route handler. */
+export const dynamic = "force-static";
+
 /**
  * Generated from the content layer, so publishing an Atlas entry adds it to
  * the sitemap automatically. Priorities reflect the conversion path: the
