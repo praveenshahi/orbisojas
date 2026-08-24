@@ -1,0 +1,22 @@
+# Dependencies and build output
+node_modules/
+.next/
+out/
+.vercel/
+*.tsbuildinfo
+next-env.d.ts
+
+# Environment — never commit keys
+.env
+.env.*
+!.env.example
+
+# Infrastructure reference.
+# Contains the live VM's external IP, OS and nginx versions, SSH user and
+# sudo policy. Harmless locally; on a public repo it is a ready-made map of
+# the server's attack surface. Kept out deliberately.
+vm-deploy-reference.md
+
+# OS noise
+.DS_Store
+Thumbs.db

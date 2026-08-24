@@ -1,0 +1,16 @@
+<svg width="640" height="640" viewBox="0 0 640 640" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="640" height="640" rx="96" fill="#F5F0E8"/>
+
+  <!-- The stable, strategic A structure. -->
+  <path d="M150 514L320 112L490 514" stroke="#1C2028" stroke-width="52" stroke-linejoin="miter"/>
+  <path d="M214 374H426" stroke="#1C2028" stroke-width="34" stroke-linecap="round"/>
+
+  <!-- Three GTM signals merge, are processed, and become one upward action. -->
+  <path d="M76 338H122C153 338 167 361 207 374" stroke="#FF6B4A" stroke-width="13" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M76 374H207" stroke="#FF6B4A" stroke-width="13" stroke-linecap="round"/>
+  <path d="M76 410H122C153 410 167 387 207 374" stroke="#FF6B4A" stroke-width="13" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M207 374L320 112" stroke="#FF6B4A" stroke-width="13" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <!-- The A apex is the outcome arrow, not an added-on symbol. -->
+  <path d="M320 58L278 146H362L320 58Z" fill="#FF6B4A"/>
+</svg>

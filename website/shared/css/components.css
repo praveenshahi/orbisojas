@@ -1,0 +1,494 @@
+/* ============================================================
+   ORBISOJAS — Reusable Components
+   Loaded after core.css on every page. All classes prefixed `oj-`.
+   ============================================================ */
+
+/* ============================================================
+   .oj-card — base card with pixel-art corner brackets
+   Default = gold accent. Modifier classes swap the accent color.
+   ============================================================ */
+.oj-card {
+  position: relative;
+  background: linear-gradient(180deg, rgba(20, 20, 20, 0.8) 0%, rgba(10, 10, 10, 0.85) 100%);
+  border: 1px solid var(--gold-line);
+  padding: 1.6rem 1.4rem;
+  transition: transform 0.4s var(--ease), border-color 0.4s var(--ease), box-shadow 0.4s var(--ease);
+  --oj-card-accent: var(--gold);
+  --oj-card-accent-glow: var(--gold-glow-soft);
+  --oj-card-bracket: var(--gold);
+}
+.oj-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--oj-card-accent);
+  box-shadow: 0 12px 32px rgba(0,0,0,0.65), 0 0 24px var(--oj-card-accent-glow);
+}
+.oj-card:hover .oj-bracket {
+  color: var(--gold-bright);
+  text-shadow: 0 0 6px var(--oj-card-accent-glow);
+}
+
+/* Corner brackets — absolute-positioned spans (one per corner) */
+.oj-bracket {
+  position: absolute;
+  color: var(--oj-card-bracket);
+  font-family: var(--font-pixel);
+  font-size: 1.4rem;
+  line-height: 1;
+  pointer-events: none;
+  transition: color 0.3s var(--ease), text-shadow 0.3s var(--ease);
+}
+.oj-bracket--tl { top: 4px; left: 6px; }
+.oj-bracket--tr { top: 4px; right: 6px; }
+.oj-bracket--bl { bottom: 4px; left: 6px; }
+.oj-bracket--br { bottom: 4px; right: 6px; }
+
+/* Category accents */
+.oj-card--accent-pink   { --oj-card-accent: var(--accent-pink);   --oj-card-accent-glow: var(--accent-pink-glow);   --oj-card-bracket: var(--accent-pink); }
+.oj-card--accent-teal   { --oj-card-accent: var(--accent-teal);   --oj-card-accent-glow: var(--accent-teal-glow);   --oj-card-bracket: var(--accent-teal); }
+.oj-card--accent-purple { --oj-card-accent: var(--accent-purple); --oj-card-accent-glow: var(--accent-purple-glow); --oj-card-bracket: var(--accent-purple); }
+.oj-card--accent-green  { --oj-card-accent: var(--accent-green);  --oj-card-accent-glow: var(--accent-green-glow);  --oj-card-bracket: var(--accent-green); }
+.oj-card--accent-gold   { --oj-card-accent: var(--gold-bright);   --oj-card-accent-glow: var(--gold-glow);          --oj-card-bracket: var(--gold-bright); }
+
+/* ============================================================
+   .oj-card--icon — centered icon + title + caption
+   ============================================================ */
+.oj-card--icon {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 0.8rem;
+  padding: 1.8rem 1.2rem 1.4rem;
+}
+.oj-card--icon .oj-card__icon {
+  width: 64px;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  image-rendering: pixelated;
+}
+.oj-card--icon .oj-card__icon img,
+.oj-card--icon .oj-card__icon svg {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  image-rendering: pixelated;
+}
+.oj-card--icon .oj-card__title {
+  font-family: var(--font-pixel);
+  font-size: var(--fs-h3);
+  letter-spacing: var(--ls-wider);
+  text-transform: uppercase;
+  color: var(--oj-card-accent);
+  margin: 0;
+}
+.oj-card--icon .oj-card__caption {
+  font-family: var(--font-ui);
+  font-size: var(--fs-small);
+  color: var(--ink-dim);
+  line-height: var(--lh-snug);
+  margin: 0;
+}
+
+/* ============================================================
+   .oj-realm-card — image-header variant
+   ============================================================ */
+.oj-realm-card {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  padding: 0;
+}
+.oj-realm-card .oj-realm-card__img {
+  width: 100%;
+  aspect-ratio: 5 / 3;
+  object-fit: cover;
+  display: block;
+  image-rendering: pixelated;
+  background: var(--shadow);
+}
+.oj-realm-card .oj-realm-card__body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 0.5rem;
+  padding: 1.2rem 1rem 1.4rem;
+}
+.oj-realm-card .oj-realm-card__icon {
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--oj-card-accent);
+  image-rendering: pixelated;
+}
+.oj-realm-card .oj-realm-card__icon svg { width: 100%; height: 100%; }
+.oj-realm-card .oj-realm-card__title {
+  font-family: var(--font-pixel);
+  font-size: var(--fs-h3);
+  letter-spacing: var(--ls-wider);
+  text-transform: uppercase;
+  color: var(--oj-card-accent);
+  margin: 0;
+}
+.oj-realm-card .oj-realm-card__attrs {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  font-family: var(--font-pixel);
+  font-size: var(--fs-small);
+  color: var(--ink-dim);
+  line-height: var(--lh-snug);
+}
+.oj-realm-card:hover .oj-realm-card__img {
+  filter: brightness(1.1);
+  transition: filter 0.4s var(--ease);
+}
+
+/* ============================================================
+   .oj-card-grid — flexible grid wrapper
+   ============================================================ */
+.oj-card-grid {
+  display: grid;
+  gap: 1.2rem;
+  grid-template-columns: repeat(4, 1fr);
+}
+.oj-card-grid--two   { grid-template-columns: repeat(2, 1fr); }
+.oj-card-grid--five  { grid-template-columns: repeat(5, 1fr); }
+@media (max-width: 1024px) {
+  .oj-card-grid--five { grid-template-columns: repeat(3, 1fr); }
+  .oj-card-grid       { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 640px) {
+  .oj-card-grid,
+  .oj-card-grid--two,
+  .oj-card-grid--five { grid-template-columns: 1fr; }
+}
+
+/* ============================================================
+   .oj-terminal — green-on-black CRT panel
+   ============================================================ */
+.oj-terminal {
+  position: relative;
+  background: var(--crt-bg);
+  border: 1px solid var(--crt-green-dim);
+  padding: 1.4rem 1.6rem;
+  font-family: var(--font-pixel);
+  color: var(--crt-green);
+  font-size: var(--fs-body);
+  line-height: var(--lh-snug);
+  overflow: hidden;
+  box-shadow: inset 0 0 24px rgba(92,224,92,0.06), 0 0 24px rgba(92,224,92,0.12);
+}
+/* Scanline overlay */
+.oj-terminal::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    180deg,
+    transparent 0 2px,
+    var(--crt-scanline) 2px 3px
+  );
+  pointer-events: none;
+  z-index: 1;
+}
+.oj-terminal > * {
+  position: relative;
+  z-index: 2;
+}
+.oj-terminal__line {
+  display: block;
+  margin-bottom: 0.4rem;
+}
+.oj-terminal__prompt {
+  color: var(--crt-green);
+  margin-right: 0.4rem;
+}
+
+/* Green progress bar (borrows .mc-gauge shape, recolored) */
+.oj-terminal__progress {
+  position: relative;
+  height: 14px;
+  background: rgba(92,224,92,0.08);
+  border: 1px solid var(--crt-green-dim);
+  margin: 0.6rem 0 0.8rem;
+  overflow: hidden;
+}
+.oj-terminal__progress-fill {
+  height: 100%;
+  background: repeating-linear-gradient(
+    90deg,
+    var(--crt-green) 0 6px,
+    rgba(92,224,92,0.7) 6px 8px
+  );
+  width: 0%;
+  box-shadow: 0 0 8px rgba(92,224,92,0.6);
+  animation: ojTerminalProgress 3s var(--ease) forwards;
+  animation-delay: 0.5s;
+}
+@keyframes ojTerminalProgress {
+  to { width: 78%; }
+}
+.oj-terminal__cursor {
+  display: inline-block;
+  color: var(--crt-green);
+  margin-left: 0.2rem;
+  animation: ojTerminalBlink 1s steps(2, start) infinite;
+  text-shadow: 0 0 4px var(--crt-green);
+}
+@keyframes ojTerminalBlink {
+  to { opacity: 0; }
+}
+
+/* ============================================================
+   .oj-stat-line — dot-leader stat row (label ........ value)
+   ============================================================ */
+.oj-stat-line {
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+  font-family: var(--font-pixel);
+  font-size: var(--fs-body);
+  color: var(--ink);
+}
+.oj-stat-line__label {
+  color: var(--ink-dim);
+  white-space: nowrap;
+}
+.oj-stat-line__dots {
+  flex: 1;
+  border-bottom: 1px dotted currentColor;
+  opacity: 0.4;
+  transform: translateY(-0.35em);
+  min-width: 12px;
+}
+.oj-stat-line__value {
+  color: var(--gold-bright);
+  white-space: nowrap;
+  text-transform: uppercase;
+}
+/* Inside .oj-terminal, stats inherit CRT green */
+.oj-terminal .oj-stat-line { color: var(--crt-green); }
+.oj-terminal .oj-stat-line__label { color: var(--crt-green); opacity: 0.8; }
+.oj-terminal .oj-stat-line__dots { color: var(--crt-green); }
+.oj-terminal .oj-stat-line__value { color: var(--crt-green); text-shadow: 0 0 4px var(--crt-green); }
+
+/* ============================================================
+   .oj-symptom-list — × marked items in red
+   ============================================================ */
+.oj-symptom-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+.oj-symptom-list li {
+  font-family: var(--font-pixel);
+  font-size: var(--fs-body);
+  color: var(--ink);
+  display: flex;
+  align-items: baseline;
+  gap: 0.6rem;
+}
+.oj-symptom-list li::before {
+  content: '✕';
+  color: var(--heart);
+  font-family: var(--font-pixel);
+  font-size: 0.9em;
+}
+
+/* ============================================================
+   .oj-callout — pink/rose text emphasis
+   ============================================================ */
+.oj-callout {
+  font-family: var(--font-pixel);
+  font-size: var(--fs-h3);
+  color: var(--heart);
+  letter-spacing: var(--ls-wider);
+  text-transform: uppercase;
+  margin: 0;
+}
+
+/* ============================================================
+   .oj-section-heading — decorative dividers
+   ============================================================ */
+.oj-section-heading {
+  font-family: var(--font-display);
+  font-size: var(--fs-h2);
+  letter-spacing: var(--ls-wider);
+  text-transform: uppercase;
+  color: var(--gold-bright);
+  text-shadow: var(--text-neon);
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin: 0 0 0.4rem;
+}
+.oj-section-heading::before,
+.oj-section-heading::after {
+  content: '·–·–·';
+  color: var(--gold);
+  opacity: 0.6;
+  font-family: var(--font-pixel);
+  font-size: 1.1rem;
+  letter-spacing: 2px;
+}
+.oj-section-subheading {
+  font-family: var(--font-ui);
+  font-size: var(--fs-body);
+  color: var(--ink-dim);
+  text-align: center;
+  margin: 0 0 2rem;
+}
+
+/* ============================================================
+   .oj-split-hero — two-column hero (text left, art right)
+   ============================================================ */
+.oj-split-hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+  gap: 3rem;
+  align-items: center;
+  padding: 6rem 2rem 4rem;
+  max-width: 1280px;
+  margin: 0 auto;
+}
+.oj-split-hero__text {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.oj-split-hero__art {
+  position: relative;
+  aspect-ratio: 9 / 10;
+  background: var(--shadow);
+  border: 1px solid var(--gold-line);
+  overflow: hidden;
+}
+.oj-split-hero__art img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  image-rendering: pixelated;
+}
+.oj-split-hero__cta-row {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  margin-top: 1.4rem;
+  align-items: flex-start;
+}
+.oj-split-hero__cta-row .oj-btn {
+  width: max-content;
+}
+@media (max-width: 900px) {
+  .oj-split-hero {
+    grid-template-columns: 1fr;
+    padding: 5rem 1.2rem 3rem;
+    gap: 2rem;
+  }
+  .oj-split-hero__art { aspect-ratio: 4 / 3; }
+}
+
+/* ============================================================
+   .oj-btn — buttons (primary filled, secondary outlined)
+   Built so .nav-cta is the canonical primary; this matches it.
+   ============================================================ */
+.oj-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-family: var(--font-pixel);
+  font-size: var(--fs-small);
+  letter-spacing: var(--ls-wider);
+  text-transform: uppercase;
+  padding: 0.85rem 1.4rem;
+  border: 1px solid var(--gold);
+  background: transparent;
+  color: var(--gold-bright);
+  cursor: pointer;
+  transition: all 0.3s var(--ease);
+  box-shadow: var(--shadow-lift), var(--glow-gold-soft);
+}
+.oj-btn:hover {
+  background: var(--gold);
+  color: var(--void);
+  box-shadow: var(--shadow-lift), var(--glow-gold);
+}
+.oj-btn--primary {
+  background: var(--gold-bright);
+  color: var(--void);
+  border-color: var(--gold);
+}
+.oj-btn--primary:hover {
+  background: var(--gold-pale);
+  color: var(--void);
+}
+.oj-btn--secondary {
+  background: transparent;
+  color: var(--gold-bright);
+  box-shadow: var(--shadow-lift);
+}
+
+/* ============================================================
+   .oj-page-outro — full-bleed outro CTA centered over scene bg
+   ============================================================ */
+.oj-page-outro {
+  position: relative;
+  padding: 7rem 2rem 6rem;
+  text-align: center;
+  z-index: 5;
+}
+.oj-page-outro__orb {
+  width: 84px;
+  height: 84px;
+  margin: 0 auto 1.4rem;
+  image-rendering: pixelated;
+  filter: drop-shadow(0 0 16px var(--gold-glow));
+  animation: ojOrbPulse 3.5s ease-in-out infinite;
+}
+@keyframes ojOrbPulse {
+  0%, 100% { filter: drop-shadow(0 0 12px var(--gold-glow-soft)); }
+  50%      { filter: drop-shadow(0 0 24px var(--gold-glow)); }
+}
+.oj-page-outro__title {
+  font-family: var(--font-display);
+  font-size: var(--fs-hero);
+  color: var(--gold-bright);
+  text-shadow: var(--text-neon);
+  text-transform: uppercase;
+  letter-spacing: var(--ls-wide);
+  margin: 0 0 1rem;
+  line-height: var(--lh-tight);
+}
+.oj-page-outro__sub {
+  font-family: var(--font-ui);
+  font-size: var(--fs-body);
+  color: var(--ink);
+  margin: 0 0 0.4rem;
+}
+.oj-page-outro__cta {
+  margin-top: 2rem;
+}
+
+/* ============================================================
+   REDUCED MOTION — cancel hover lifts and scene animations
+   ============================================================ */
+@media (prefers-reduced-motion: reduce) {
+  .oj-card,
+  .oj-realm-card,
+  .oj-realm-card__img { transition: none !important; }
+  .oj-card:hover { transform: none !important; }
+  .oj-terminal__progress-fill { animation: none !important; width: 78% !important; }
+  .oj-terminal__cursor,
+  .oj-page-outro__orb { animation: none !important; }
+}

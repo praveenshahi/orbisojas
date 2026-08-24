@@ -1,0 +1,32 @@
+# Orbis Ojas
+
+> Orbis Ojas helps people see the architecture beneath their repeating patterns. Its first product, Soul Mirror, is a personalised 32+ page report built from a person's birth details and their own answers, analysed across multiple frameworks, refined by a human interpreter, and delivered by email within 24 hours.
+
+Orbis Ojas maintains the Orbis Atlas: a reference library that translates between two vocabularies describing the same human patterns. Western clinical psychology and Eastern contemplative traditions overlap substantially in what they describe and share almost no terminology. The Atlas documents that correspondence explicitly. These are correspondences, not equivalences — the traditions were built for different purposes and the mapping is a working tool.
+
+Terms Orbis Ojas defines: **inner architecture** (the structure producing a person's repeating patterns, as distinct from the behaviours), **core loop** (the specific trigger → reaction → reinforcement → return cycle a person repeats), **root story** (the belief sustaining a core loop), **pattern map** (a person's standing across mind, identity, emotions, body, relationships and purpose).
+
+Facts: Soul Mirror is delivered within 24 hours of request. Pricing is shared on enquiry; there is no public price. Every report is refined by a human interpreter, not generated and sent. Birth details and answers are used only to prepare the report.
+
+## Core pages
+
+- [Orbis Ojas](https://orbisojas.com): What Soul Mirror is and the repeating patterns it addresses
+- [Soul Mirror](https://orbisojas.com/soul-mirror): The product — what it reveals, how it is made, FAQ, and the request form
+- [The Orbis Atlas](https://orbisojas.com/atlas): The question index and the full East–West correspondence table
+
+## The Atlas — one pattern per entry, answered in both traditions
+
+- [Why do I keep abandoning myself?](https://orbisojas.com/atlas/why-do-i-keep-abandoning-myself): Self-abandonment and the fawn response ↔ loss of svadharma
+- [Why do I keep attracting the same kind of people?](https://orbisojas.com/atlas/why-do-i-keep-attracting-the-same-people): Attachment style and repetition compulsion ↔ samskara
+- [Why can't I let go?](https://orbisojas.com/atlas/why-cant-i-let-go): Rumination and complicated grief ↔ raga
+- [Why do I overthink everything?](https://orbisojas.com/atlas/why-do-i-overthink-everything): Rumination and hypervigilance ↔ an unsettled manomaya kosha
+- [Why do I self sabotage?](https://orbisojas.com/atlas/why-do-i-self-sabotage): Approach-avoidance conflict ↔ vasana
+- [Why do I feel empty even after achieving things?](https://orbisojas.com/atlas/why-do-i-feel-empty-after-achieving): The arrival fallacy ↔ seeking in the wrong kosha
+- [Why do I hide my true self?](https://orbisojas.com/atlas/why-do-i-hide-my-true-self): Masking and the false self ↔ avidya
+- [Why don't I trust myself?](https://orbisojas.com/atlas/why-dont-i-trust-myself): Chronic invalidation ↔ clouded buddhi
+- [Why do I feel stuck no matter what I do?](https://orbisojas.com/atlas/why-do-i-feel-stuck): Learned helplessness ↔ tamas and stagnant apana
+
+## Optional
+
+- [Request a Soul Mirror](https://orbisojas.com/soul-mirror#request): Birth details plus three reflective questions
+- [Sitemap](https://orbisojas.com/sitemap.xml): Every indexable URL

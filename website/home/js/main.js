@@ -35,49 +35,22 @@
     });
   }
 
-  /* ------------------------------------------------
-     WORD REVEAL SETUP
-     Splits text into word spans for stagger animation.
-     Preserves <br> tags and <span> tags (like .accent).
-     ------------------------------------------------ */
-  document.querySelectorAll('[data-reveal]').forEach(function(el) {
-    var html = el.innerHTML;
-    var parts = html.split(/(<br\s*\/?>|<span[^>]*>.*?<\/span>)/gi);
-    var wrapped = parts.map(function(part) {
-      if (/^<br/i.test(part)) return part;
-      if (/^<span/i.test(part)) return '<span class="word">' + part + '</span>';
-      return part.replace(/(\S+)/g, '<span class="word">$1</span>');
-    }).join('');
-    el.innerHTML = wrapped;
-  });
+  /* Word-reveal splitter moved to shared/js/core.js — loaded before this file. */
 
   /* ------------------------------------------------
      GSAP ANIMATIONS
      ------------------------------------------------ */
   gsap.registerPlugin(ScrollTrigger);
 
-  // Hero — word-by-word reveal on load
-  var titleWords = document.querySelectorAll('.hero-title .word');
+  // Hero title uses data-typeon (handled in shared/js/core.js).
+  // Sub-title still uses word-fade; divider fades with sub.
   var subWords = document.querySelectorAll('.hero-sub .word');
   var divider = document.querySelector('.hero-divider');
 
-  if (titleWords.length) {
-    var tl = gsap.timeline({ delay: 0.4 });
-
-    tl.to(titleWords, {
-      opacity: 1,
-      y: 0,
-      stagger: 0.09,
-      duration: 0.55,
-      ease: 'power2.out'
-    });
-
-    tl.to(divider, {
-      opacity: 1,
-      duration: 0.7,
-      ease: 'power2.out'
-    }, '-=0.2');
-
+  if (subWords.length) {
+    // Delay = typeon start delay (300ms) + roughly the type duration so sub appears after.
+    var tl = gsap.timeline({ delay: 2.6 });
+    tl.to(divider, { opacity: 1, duration: 0.7, ease: 'power2.out' });
     tl.to(subWords, {
       opacity: 1,
       y: 0,

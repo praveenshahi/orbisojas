@@ -1,42 +1,147 @@
 /* ============================================================
    ORBISOJAS — Design Tokens
-   Single source of truth for all pages
+   Black + Gold palette with depth-via-shadow 3D system.
+   Single source of truth for all pages.
    ============================================================ */
 
 :root {
-  /* Backgrounds */
-  --midnight: #0B0C1E;
-  --deep-blue: #141832;
-  --bg: #0B0C1E;
-  --section-border: #1a1e38;
-  --glass: rgba(11, 12, 30, 0.55);
-  --glass-border: rgba(80, 90, 140, 0.2);
+  /* ============================================================
+     COLORS — BLACKS (depth via darkness)
+     ============================================================ */
+  --void:    #000000;   /* deepest — page background */
+  --shadow:  #0A0A0A;   /* recessed surfaces */
+  --coal:    #141414;   /* base raised surface */
+  --slate:   #1F1F1F;   /* top raised surface (cards, nav) */
 
-  /* Text */
-  --ink: #E8DCC8;
-  --ink-dim: #8A7D6A;
+  /* ============================================================
+     COLORS — GOLDS (depth via lightness)
+     ============================================================ */
+  --gold-deep:   #6B4F1A;   /* recessed/shadow side of gold */
+  --gold:        #C08A2C;   /* mid — primary gold */
+  --gold-bright: #E8B547;   /* raised highlight */
+  --gold-pale:   #F4D77A;   /* peak shine — used sparingly */
+  --gold-glow:   rgba(232, 181, 71, 0.4);
+  --gold-glow-soft: rgba(232, 181, 71, 0.15);
+  --gold-line:   rgba(192, 138, 44, 0.25);   /* hairline dividers */
 
-  /* Accents */
-  --teal: #1A4A5C;
-  --amber: #C08A2C;
-  --amber-glow: rgba(192,138,44,0.35);
-  --rose: #C44858;
-  --cream: #D4A870;
-  --stone: #7A7A78;
-  --flame: #C45E2A;
-  --ember: #E8834A;
+  /* ============================================================
+     COLORS — TYPE
+     ============================================================ */
+  --ink:     #E8DCC8;   /* body text — warm off-white */
+  --ink-dim: #8A7D6A;   /* muted body */
 
-  /* Typography */
-  --font-pixel: 'Press Start 2P', monospace;
-  --font-ui: 'Space Grotesk', sans-serif;
+  /* ============================================================
+     COLORS — RESERVED ACCENTS (single-moment use only)
+     ============================================================ */
+  --heart:   #E63946;   /* like/heart animation only — DO NOT use elsewhere */
 
-  /* Motion */
-  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+  /* ============================================================
+     COLORS — CATEGORICAL ACCENTS
+     Use ONLY on .oj-card category borders/icons and realm icons to
+     distinguish thematic categories. Never on body text or surfaces.
+     ============================================================ */
+  --accent-pink:   #C45E7A;   /* Identity / Heart realm */
+  --accent-teal:   #3D8B96;   /* Conditioning */
+  --accent-purple: #7B5DC4;   /* Shadow / Mind realm */
+  --accent-green:  #6BAC4C;   /* Energy realm */
+  --accent-pink-glow:   rgba(196, 94, 122, 0.35);
+  --accent-teal-glow:   rgba(61, 139, 150, 0.35);
+  --accent-purple-glow: rgba(123, 93, 196, 0.35);
+  --accent-green-glow:  rgba(107, 172, 76, 0.35);
 
-  /* Legacy aliases — homepage uses these */
-  --text: var(--ink);
-  --text-dim: var(--ink-dim);
-  --deep: var(--deep-blue);
-  --pixel: var(--font-pixel);
-  --body: var(--font-ui);
+  /* ============================================================
+     COLORS — CRT TERMINAL (green-on-black retro panel)
+     Used inside .oj-terminal only.
+     ============================================================ */
+  --crt-bg:        #050a02;
+  --crt-green:     #5ce05c;
+  --crt-green-dim: rgba(92, 224, 92, 0.4);
+  --crt-scanline:  rgba(92, 224, 92, 0.04);
+
+  /* ============================================================
+     SHADOW STACK — 3D depth recipe
+     Compose by combining inset (recess) + drop (lift) + glow.
+     ============================================================ */
+  --shadow-recess:  inset 0 2px 4px rgba(0,0,0,0.6), inset 0 -1px 0 rgba(232,181,71,0.08);
+  --shadow-lift:    0 1px 0 rgba(232,181,71,0.12), 0 8px 24px rgba(0,0,0,0.6);
+  --shadow-lift-lg: 0 1px 0 rgba(232,181,71,0.15), 0 16px 48px rgba(0,0,0,0.7);
+  --glow-gold:      0 0 24px rgba(192,138,44,0.45), 0 0 64px rgba(192,138,44,0.18);
+  --glow-gold-soft: 0 0 12px rgba(192,138,44,0.25);
+
+  /* Letterpress text — stamped into leather feel */
+  --text-emboss:   0 1px 0 rgba(232,181,71,0.18), 0 -1px 0 rgba(0,0,0,0.7);
+  --text-engrave:  0 1px 0 rgba(232,181,71,0.08), 0 -1px 0 rgba(0,0,0,0.8);
+  --text-neon:     0 0 8px rgba(232,181,71,0.6), 0 0 24px rgba(192,138,44,0.4), 0 0 48px rgba(192,138,44,0.2);
+
+  /* ============================================================
+     BACKGROUND ALIASES
+     ============================================================ */
+  --bg:            var(--void);
+  --bg-raised:     var(--coal);
+  --bg-card:       var(--slate);
+  --glass:         rgba(10, 10, 10, 0.65);
+  --glass-border:  rgba(192, 138, 44, 0.18);
+  --section-border: rgba(192, 138, 44, 0.12);
+
+  /* ============================================================
+     TYPOGRAPHY — Families
+     Display: Monoton (neon-sign retrowave headlines)
+     Pixel/UI: VT323 (CRT terminal — nav, labels, CTAs)
+     Body: Space Mono (calm mono workhorse)
+     ============================================================ */
+  --font-display: 'Monoton', 'VT323', monospace;
+  --font-pixel:   'VT323', 'Courier New', monospace;
+  --font-ui:      'Space Mono', 'Courier New', monospace;
+
+  /* ============================================================
+     TYPE SCALE — fluid via clamp(), floor at ~14px
+     ============================================================ */
+  --fs-hero:    clamp(2.4rem, 7vw, 4.8rem);    /* Monoton hero titles */
+  --fs-display: clamp(1.5rem, 4vw, 2.4rem);    /* scene leads */
+  --fs-h2:      clamp(1.2rem, 2.6vw, 1.6rem);
+  --fs-h3:      clamp(1.05rem, 1.8vw, 1.25rem);
+  --fs-body:    clamp(0.95rem, 1.15vw, 1.05rem); /* paragraphs */
+  --fs-small:   clamp(0.88rem, 1vw, 0.95rem);
+  --fs-micro:   0.85rem;                         /* hard floor — labels */
+
+  /* Line-height + letter-spacing scale */
+  --lh-tight:  1.1;
+  --lh-snug:   1.35;
+  --lh-base:   1.6;
+  --lh-loose:  1.85;
+
+  --ls-tight:  -0.01em;
+  --ls-base:   0.01em;
+  --ls-wide:   0.08em;
+  --ls-wider:  0.18em;    /* uppercase labels */
+
+  /* ============================================================
+     MOTION
+     ============================================================ */
+  --ease:        cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+
+  /* ============================================================
+     LEGACY ALIASES — kept so existing CSS keeps rendering while
+     Task #4 sweeps everything onto the new tokens.
+     Once the sweep is complete, these can be deleted.
+     ============================================================ */
+  --midnight:   var(--void);
+  --deep-blue:  var(--shadow);
+  --deep:       var(--shadow);
+  --amber:      var(--gold);
+  --amber-glow: var(--gold-glow);
+  --cream:      var(--gold-bright);
+  --text:       var(--ink);
+  --text-dim:   var(--ink-dim);
+  --teal:       var(--gold-deep);   /* teal accents fold into deep gold */
+  --rose:       var(--heart);        /* legacy rose mapped to heart accent */
+  --stone:      var(--ink-dim);
+  --flame:      var(--gold);
+  --ember:      var(--gold-bright);
+
+  /* Legacy font aliases */
+  --pixel:      var(--font-pixel);
+  --body:       var(--font-ui);
+  --font-body:  var(--font-ui);   /* fixes typo bug in template/css/style.css */
 }

@@ -42,9 +42,10 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Space+Grotesk:wght@300;400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Monoton&family=VT323&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="shared/css/tokens.css">
   <link rel="stylesheet" href="shared/css/core.css">
+  <link rel="stylesheet" href="shared/css/components.css">
   <style>
     /* ================================================
        BEGIN PAGE — v2 Design System
@@ -81,9 +82,10 @@
     }
     .nav-logo-text {
       font-family: var(--font-pixel);
-      font-size: 0.8rem;
-      letter-spacing: 0.15em;
-      color: var(--cream);
+      font-size: var(--fs-h3);
+      letter-spacing: var(--ls-wide);
+      color: var(--gold-bright);
+      text-shadow: var(--glow-gold-soft);
     }
     .nav-links {
       display: flex;
@@ -91,7 +93,7 @@
     }
     .nav-links a {
       font-family: var(--font-pixel);
-      font-size: 0.5rem;
+      font-size: var(--fs-small);
       letter-spacing: 0.1em;
       color: var(--ink-dim);
       transition: color 0.3s ease;
@@ -99,7 +101,7 @@
     .nav-links a:hover { color: var(--cream); }
     .nav-cta {
       font-family: var(--font-pixel);
-      font-size: 0.5rem;
+      font-size: var(--fs-small);
       letter-spacing: 0.1em;
       color: var(--amber);
       border: 1px solid var(--amber);
@@ -172,27 +174,29 @@
     }
     .begin-label {
       font-family: var(--font-pixel);
-      font-size: 0.5rem;
-      letter-spacing: 0.2em;
-      color: var(--amber);
+      font-size: var(--fs-micro);
+      letter-spacing: var(--ls-wider);
+      color: var(--gold);
       margin-bottom: 1.2rem;
       display: block;
+      text-transform: uppercase;
     }
     .begin-header h1 {
-      font-family: var(--font-pixel);
-      font-size: clamp(1.2rem, 3.5vw, 1.8rem);
-      color: var(--cream);
-      line-height: 2;
-      letter-spacing: 0.08em;
+      font-family: var(--font-display);
+      font-size: var(--fs-hero);
+      color: var(--gold-bright);
+      line-height: var(--lh-tight);
+      letter-spacing: var(--ls-wide);
+      text-shadow: var(--text-neon);
+      text-transform: uppercase;
     }
     .begin-header p {
       font-family: var(--font-ui);
-      font-size: 0.85rem;
+      font-size: var(--fs-body);
       color: var(--ink-dim);
       max-width: 42ch;
       margin: 1.2rem auto 0;
-      line-height: 1.8;
-      font-weight: 300;
+      line-height: var(--lh-base);
     }
 
     /* --- Glass panel form --- */
@@ -213,7 +217,7 @@
     .form-label {
       display: block;
       font-family: var(--font-pixel);
-      font-size: 0.45rem;
+      font-size: var(--fs-micro);
       letter-spacing: 0.15em;
       text-transform: uppercase;
       color: var(--ink-dim);
@@ -223,8 +227,8 @@
       font-family: var(--font-ui);
       text-transform: none;
       letter-spacing: 0;
-      font-size: 0.65rem;
-      opacity: 0.5;
+      font-size: var(--fs-small);
+      opacity: 0.6;
     }
     .form-input {
       width: 100%;
@@ -257,14 +261,13 @@
 
     .begin-note {
       font-family: var(--font-ui);
-      font-size: 0.72rem;
+      font-size: var(--fs-small);
       font-style: italic;
       color: var(--ink-dim);
       text-align: center;
       margin: 0.5rem 0 2rem;
-      line-height: 1.9;
-      font-weight: 300;
-      opacity: 0.7;
+      line-height: var(--lh-loose);
+      opacity: 0.75;
     }
 
     .begin-submit {
@@ -275,20 +278,21 @@
       align-items: center;
       gap: 0.8rem;
       font-family: var(--font-pixel);
-      font-size: 0.55rem;
-      letter-spacing: 0.12em;
-      color: var(--midnight);
-      background: var(--amber);
-      border: 1px solid var(--amber);
+      font-size: var(--fs-small);
+      letter-spacing: var(--ls-wider);
+      color: var(--void);
+      background: var(--gold-bright);
+      border: 1px solid var(--gold);
       padding: 0.9rem 2rem;
       cursor: pointer;
       transition: all 0.3s ease;
       text-transform: uppercase;
+      box-shadow: var(--shadow-lift), var(--glow-gold);
     }
     .btn-mirror:hover {
-      background: transparent;
-      color: var(--amber);
-      box-shadow: 0 0 24px rgba(192,138,44,0.25);
+      background: var(--void);
+      color: var(--gold-bright);
+      box-shadow: var(--shadow-lift), var(--glow-gold);
     }
     .btn-mirror .btn-arrow {
       transition: transform 0.3s ease;
@@ -312,21 +316,21 @@
     }
     .footer-logo {
       font-family: var(--font-pixel);
-      font-size: 0.65rem;
-      letter-spacing: 0.12em;
-      color: var(--cream);
+      font-size: var(--fs-small);
+      letter-spacing: var(--ls-wider);
+      color: var(--gold-bright);
       margin-bottom: 0.4rem;
       display: flex;
       align-items: center;
       gap: 0.5rem;
+      text-transform: uppercase;
     }
     .footer-text {
       font-family: var(--font-ui);
-      font-size: 0.6rem;
+      font-size: var(--fs-small);
       color: var(--ink-dim);
-      letter-spacing: 0.06em;
-      line-height: 1.7;
-      font-weight: 300;
+      letter-spacing: var(--ls-base);
+      line-height: var(--lh-base);
     }
     .footer-logo-img {
       width: 22px;
@@ -398,8 +402,9 @@
         <span class="nav-logo-text">ORBISOJAS</span>
       </a>
       <div class="nav-links">
-        <a href="template/">HIS JOURNEY</a>
-        <a href="her/">HER JOURNEY</a>
+        <a href="soulmirror/">SOUL MIRROR</a>
+        <a href="boytoman/">HIS JOURNEY</a>
+        <a href="girltowomen/">HER JOURNEY</a>
       </div>
       <a href="begin.html" class="nav-cta">ENTER MIRROR</a>
       <button class="nav-toggle" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
@@ -411,7 +416,7 @@
 
     <div class="begin-header">
       <span class="begin-label">&#10022; THE MIRROR &#10022;</span>
-      <h1>Begin</h1>
+      <h1 data-typeon data-speed="80" data-delay="500">Begin</h1>
       <p>Before the Mirror can reflect, it needs to know who is standing in front of it.</p>
     </div>
 
@@ -477,5 +482,7 @@
       });
     })();
   </script>
+  <script src="shared/js/core.js" defer></script>
+  <script src="shared/js/cursor.js" defer></script>
 </body>
 </html>

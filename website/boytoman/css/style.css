@@ -1,0 +1,11 @@
+/* ============================================================
+   ORBISOJAS — Boy's Journey (boytoman/)
+   Per-page overrides on top of shared/css/journey.css
+   ============================================================ */
+
+/* Per-scene .webp backgrounds — set directly on ::before with high-specificity
+   selectors so they reliably win the cascade against shared rules. */
+.scene[data-scene].scene-01::before { background-image: url('../img/scene-01.webp'); }
+.scene[data-scene].scene-02.loaded::before { background-image: url('../img/scene-02.webp'); }
+.scene[data-scene].scene-03.loaded::before { background-image: url('../img/scene-03.webp'); }
+.scene[data-scene].scene-04.loaded::before { background-image: url('../img/scene-04.webp'); }

@@ -1,0 +1,13 @@
+<svg width="640" height="640" viewBox="0 0 640 640" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="640" height="640" rx="96" fill="#071221"/>
+
+  <!-- The Amoris A: a single, calm structural form. -->
+  <path d="M170 482L320 154L470 482" stroke="#F7F4EC" stroke-width="44" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <!-- The crossbar is an incoming GTM signal becoming a decisive route. -->
+  <path d="M92 382H424L516 290" stroke="#F7F4EC" stroke-width="30" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M92 382H164" stroke="#C8FF3D" stroke-width="30" stroke-linecap="round"/>
+
+  <!-- A compact, non-literal outcome cue. -->
+  <path d="M480 290H516V326" stroke="#C8FF3D" stroke-width="22" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

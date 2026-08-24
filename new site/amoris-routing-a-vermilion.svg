@@ -1,0 +1,11 @@
+<svg width="640" height="640" viewBox="0 0 640 640" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="640" height="640" rx="96" fill="#0B1020"/>
+
+  <!-- Structural Amoris A in the primary brand colour. -->
+  <path d="M170 482L320 154L470 482" stroke="#FF6B4A" stroke-width="44" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <!-- A GTM signal becomes the crossbar, then routes into one clear direction. -->
+  <path d="M92 382H424L516 290" stroke="#FF6B4A" stroke-width="30" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M92 382H184" stroke="#F4F1EA" stroke-width="30" stroke-linecap="round"/>
+  <circle cx="516" cy="290" r="11" fill="#F4F1EA"/>
+</svg>

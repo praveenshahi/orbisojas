@@ -1,0 +1,289 @@
+/* ============================================================
+   ORBISOJAS — Soul Mirror page
+   Page-specific bindings on top of shared/css/components.css.
+   ============================================================ */
+
+body {
+  background:
+    radial-gradient(ellipse at 50% 0%, rgba(192,138,44,0.06) 0%, transparent 55%),
+    var(--void);
+  min-height: 100vh;
+}
+
+/* ============================================================
+   HERO COPY
+   ============================================================ */
+.hero-title {
+  font-family: var(--font-display);
+  font-size: var(--fs-hero);
+  color: var(--gold-bright);
+  text-shadow: var(--text-neon);
+  text-transform: uppercase;
+  letter-spacing: var(--ls-wide);
+  line-height: var(--lh-tight);
+  margin: 0 0 0.5rem;
+}
+.hero-subtitle {
+  font-family: var(--font-pixel);
+  font-size: var(--fs-display);
+  color: var(--ink);
+  letter-spacing: var(--ls-wide);
+  line-height: var(--lh-snug);
+  margin: 0 0 1.2rem;
+}
+.hero-body {
+  font-family: var(--font-ui);
+  font-size: var(--fs-body);
+  color: var(--ink-dim);
+  line-height: var(--lh-base);
+  margin: 0;
+}
+.oj-split-hero__text .oj-symptom-list {
+  margin: 0.4rem 0 1rem;
+}
+
+/* ============================================================
+   SECTION CONTAINER
+   ============================================================ */
+.sm-section {
+  padding: 4rem 2rem;
+  max-width: 1280px;
+  margin: 0 auto;
+  position: relative;
+}
+.sm-section__head {
+  text-align: center;
+  margin-bottom: 2.4rem;
+}
+.sm-heading-left {
+  text-align: center;
+  line-height: var(--lh-tight);
+}
+@media (max-width: 768px) {
+  .sm-section { padding: 3rem 1.2rem; }
+}
+
+/* ============================================================
+   SECTION 2 — Programming (4 cards | CRT terminal)
+   ============================================================ */
+.sm-programming {
+  position: relative;
+}
+.sm-programming::before {
+  /* Subtle full-bleed dark band so the section reads as its own block */
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 0%, rgba(20,20,20,0.4) 12%, rgba(20,20,20,0.4) 88%, transparent 100%);
+  z-index: -1;
+}
+.sm-programming__grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+  gap: 2rem;
+  align-items: start;
+}
+@media (max-width: 960px) {
+  .sm-programming__grid { grid-template-columns: 1fr; }
+}
+
+/* Tighter 2x2 inside the left half on desktop */
+.sm-programming__grid .oj-card-grid {
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+}
+@media (max-width: 540px) {
+  .sm-programming__grid .oj-card-grid { grid-template-columns: 1fr; }
+}
+
+/* Card icon — let images breathe inside the card */
+.sm-programming .oj-card--icon .oj-card__icon {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 5 / 8;
+  max-height: 240px;
+}
+.sm-programming .oj-card--icon .oj-card__icon img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* ============================================================
+   SECTION 3 — Realms
+   ============================================================ */
+.sm-realms {
+  padding-top: 5rem;
+}
+
+/* ============================================================
+   SECTION 4 — Outro
+   ============================================================ */
+.sm-outro {
+  min-height: 70vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 2rem;
+  /* Subtle gold-warm radial behind centered orb */
+  background:
+    radial-gradient(ellipse at 50% 60%, rgba(192,138,44,0.12) 0%, transparent 55%),
+    var(--void);
+}
+.sm-outro .scene-gradient {
+  background: linear-gradient(
+    180deg,
+    rgba(0,0,0,0.6) 0%,
+    rgba(0,0,0,0.2) 35%,
+    rgba(0,0,0,0.4) 70%,
+    rgba(0,0,0,0.8) 100%
+  );
+}
+
+/* ============================================================
+   NAV — hero CTA + nav link harmony on this page only
+   ============================================================ */
+.nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  padding: 0 2rem;
+  background: rgba(0, 0, 0, 0.78);
+  backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--gold-line);
+}
+.nav-inner {
+  max-width: 1280px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 64px;
+}
+.nav-logo {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+.nav-logo-img {
+  border-radius: 50%;
+  filter: drop-shadow(0 0 6px var(--gold-glow-soft));
+}
+.nav-logo-text {
+  font-family: var(--font-pixel);
+  font-size: var(--fs-h3);
+  letter-spacing: var(--ls-wide);
+  color: var(--gold-bright);
+}
+.nav-links {
+  display: flex;
+  gap: 1.4rem;
+}
+.nav-links a {
+  font-family: var(--font-pixel);
+  font-size: var(--fs-small);
+  letter-spacing: var(--ls-wider);
+  color: var(--ink-dim);
+  transition: color 0.3s var(--ease);
+  text-transform: uppercase;
+  position: relative;
+  padding: 0.3rem 0;
+}
+.nav-links a:hover { color: var(--gold-bright); }
+.nav-links a.nav-active { color: var(--gold-bright); }
+.nav-links a.nav-active::after {
+  content: '';
+  position: absolute;
+  left: 0; right: 0; bottom: -2px;
+  height: 2px;
+  background: var(--gold);
+  box-shadow: 0 0 6px var(--gold-glow);
+}
+.nav-cta {
+  font-family: var(--font-pixel);
+  font-size: var(--fs-small);
+  letter-spacing: var(--ls-wider);
+  color: var(--gold-bright);
+  border: 1px solid var(--gold);
+  padding: 0.55rem 1.1rem;
+  text-transform: uppercase;
+  background: var(--shadow);
+  box-shadow: var(--shadow-lift), var(--glow-gold-soft);
+  transition: all 0.3s var(--ease);
+}
+.nav-cta:hover {
+  background: var(--gold);
+  color: var(--void);
+  box-shadow: var(--shadow-lift), var(--glow-gold);
+}
+.nav-toggle {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 6px;
+}
+.nav-toggle span {
+  display: block;
+  width: 22px;
+  height: 2px;
+  background: var(--gold-bright);
+  transition: all 0.3s var(--ease);
+}
+
+@media (max-width: 900px) {
+  .nav-links { display: none; }
+  .nav-toggle { display: flex; }
+  .nav.open .nav-links {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 64px;
+    left: 0; right: 0;
+    background: rgba(0,0,0,0.96);
+    backdrop-filter: blur(16px);
+    padding: 1.4rem 2rem;
+    gap: 1.2rem;
+    border-bottom: 1px solid var(--gold-line);
+  }
+}
+
+/* ============================================================
+   FOOTER — minimal on this page (matches site)
+   ============================================================ */
+.site-footer {
+  border-top: 1px solid var(--gold-line);
+  padding: 2rem;
+  background: var(--void);
+}
+.footer-inner {
+  max-width: 1280px;
+  margin: 0 auto;
+  text-align: center;
+}
+.footer-logo {
+  font-family: var(--font-pixel);
+  font-size: var(--fs-small);
+  letter-spacing: var(--ls-wider);
+  color: var(--gold-bright);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.4rem;
+  text-transform: uppercase;
+}
+.footer-logo-img {
+  border-radius: 50%;
+  vertical-align: middle;
+}
+.footer-text {
+  font-family: var(--font-ui);
+  font-size: var(--fs-small);
+  color: var(--ink-dim);
+  letter-spacing: var(--ls-base);
+  line-height: var(--lh-base);
+  margin: 0;
+}

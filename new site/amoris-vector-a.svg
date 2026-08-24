@@ -1,0 +1,10 @@
+<svg width="640" height="640" viewBox="0 0 640 640" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="640" height="640" rx="96" fill="#F5F0E8"/>
+
+  <!-- Custom Amoris A: a wide, architectural decision-gate silhouette. -->
+  <path fill-rule="evenodd" clip-rule="evenodd" d="M320 78L548 524H446L320 263L194 524H92L320 78ZM320 211L234 393H406L320 211Z" fill="#1C2028"/>
+
+  <!-- One GTM route moves through the A and exits with clear direction. -->
+  <path d="M72 407L493 312" stroke="#FF6B4A" stroke-width="26" stroke-linecap="round"/>
+  <path d="M558 298L484 264L497 330L558 298Z" fill="#FF6B4A"/>
+</svg>

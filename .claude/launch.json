@@ -1,0 +1,17 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "orbisojas",
+      "runtimeExecutable": "npx",
+      "runtimeArgs": ["serve", "website", "-l", "3456", "--no-clipboard"],
+      "port": 3456
+    },
+    {
+      "name": "orbis-web",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["run", "dev", "--prefix", "web"],
+      "port": 3000
+    }
+  ]
+}

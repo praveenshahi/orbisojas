@@ -1,0 +1,360 @@
+@import "tailwindcss";
+
+/* ============================================================================
+   ORBIS OJAS — DESIGN TOKENS
+   Every colour, size, rhythm and easing in the system is defined here once.
+   Components consume tokens. Components never invent values.
+   ========================================================================== */
+
+@theme {
+  /* --- Ground: warm near-blacks, never neutral grey ---------------------- */
+  --color-void: #0a0908;
+  --color-ink: #12100e;
+  --color-ink-raised: #1a1714;
+  --color-ink-edge: #262019;
+
+  /* --- Parchment: the ivory editorial bands ------------------------------ */
+  --color-parchment: #f4eee2;
+  --color-parchment-deep: #e8dcc6;
+  --color-parchment-edge: #d6c7ab;
+
+  /* --- Type on dark ------------------------------------------------------ */
+  --color-ivory: #f7f2e8; /* 17.4:1 on void */
+  --color-ivory-muted: #cabfae; /* 9.9:1 on void */
+  --color-ivory-faint: #9a8f7e; /* 5.2:1 on void */
+
+  /* --- Type on parchment ------------------------------------------------- */
+  --color-ink-text: #1b1815; /* 15.6:1 on parchment */
+  --color-ink-muted: #554c40; /*  7.4:1 on parchment */
+
+  /* --- Gold: the only accent --------------------------------------------- */
+  --color-gold: #c79a4e; /*  7.6:1 on void — primary accent */
+  --color-gold-bright: #e8c88a; /* 12.1:1 on void — emphasis inside headlines */
+  --color-gold-deep: #8a6528; /*  4.9:1 on parchment — accent on light */
+
+  /* --- Fluid type scale --------------------------------------------------
+     Clamped so ultra-wide never overshoots and mobile never crushes.        */
+  --text-display-xl: clamp(2.5rem, 1.6rem + 3.6vw, 4.75rem);
+  --text-display-l: clamp(2.25rem, 1.45rem + 3.4vw, 4.25rem);
+  --text-display-m: clamp(1.875rem, 1.4rem + 2.1vw, 3rem);
+  --text-display-s: clamp(1.5rem, 1.25rem + 1.1vw, 2.125rem);
+  --text-heading: clamp(1.25rem, 1.12rem + 0.6vw, 1.5rem);
+  --text-lead: clamp(1.0625rem, 1rem + 0.35vw, 1.25rem);
+  --text-body: 1rem;
+  --text-small: 0.875rem;
+  --text-eyebrow: 0.75rem;
+
+  /* --- Rhythm ------------------------------------------------------------ */
+  --spacing-section: clamp(5rem, 2.5rem + 8vw, 10rem);
+  --spacing-gutter: clamp(1.25rem, 0.5rem + 3vw, 3rem);
+
+  /* --- Measure ----------------------------------------------------------- */
+  --container-prose: 34rem;
+  --container-shell: 82.5rem;
+
+  /* --- Motion ------------------------------------------------------------ */
+  --ease-out-quint: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-soft: cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* --- Fonts (bound in layout.tsx via next/font) ------------------------- */
+  --font-display: var(--font-playfair), "Iowan Old Style", Georgia, serif;
+  --font-sans: var(--font-instrument), ui-sans-serif, system-ui, sans-serif;
+  /* Third family, used only by the field-note cards. */
+  --font-hand: var(--font-caveat), "Segoe Script", cursive;
+
+  /* Paper the field notes are printed on. */
+  --color-note: #efe6d2;
+  --color-note-edge: #d8c9ab;
+  --color-note-ink: #4a4034;
+}
+
+/* Hairlines are gold at low opacity, never grey borders. */
+@theme {
+  --color-hairline: color-mix(in srgb, #c79a4e 22%, transparent);
+  --color-hairline-strong: color-mix(in srgb, #c79a4e 42%, transparent);
+  --color-hairline-ink: color-mix(in srgb, #8a6528 26%, transparent);
+}
+
+/* ============================================================================
+   BASE
+   ========================================================================== */
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    background-color: var(--color-void);
+    color: var(--color-ivory);
+    font-family: var(--font-sans);
+    font-size: var(--text-body);
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  /* Display type is optically tightened as it scales up. */
+  h1,
+  h2,
+  h3 {
+    font-family: var(--font-display);
+    font-weight: 400;
+    line-height: 1.06;
+    letter-spacing: -0.018em;
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  /* One visible focus treatment, everywhere, no exceptions. */
+  :focus-visible {
+    outline: 2px solid var(--color-gold-bright);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+
+  ::selection {
+    background: var(--color-gold);
+    color: var(--color-void);
+  }
+
+  /* Fluid media never causes horizontal overflow. */
+  img,
+  svg,
+  video {
+    max-width: 100%;
+    height: auto;
+  }
+}
+
+/* ============================================================================
+   MOTION — every animation here is opacity/transform only (compositor-safe)
+   ========================================================================== */
+
+@layer utilities {
+  /* Scroll reveal, driven by IntersectionObserver adding [data-revealed].
+
+     The hidden state is scoped to `html.js`, which a tiny inline script in
+     the document head sets. Without JavaScript — disabled, blocked, or a
+     bundle that failed to load — the rule never applies and every section
+     renders fully visible. Content must never depend on script to be seen. */
+  .reveal {
+    transition:
+      opacity 0.9s var(--ease-out-quint),
+      transform 0.9s var(--ease-out-quint);
+    transition-delay: var(--reveal-delay, 0ms);
+  }
+
+  .js .reveal:not([data-revealed="true"]) {
+    opacity: 0;
+    transform: translate3d(0, 18px, 0);
+  }
+
+  /* Framer Motion serialises its `initial` state as an inline style, so a
+     section with a hidden initial ships as opacity:0 in the HTML and stays
+     that way if the bundle never runs. Same failure as an unconditional
+     `.reveal`, different mechanism. Any subtree driven by Motion carries
+     `.motion-scope`, and without JS everything inside it is forced visible.
+     `!important` is required — inline styles outrank the cascade. */
+  html:not(.js) .motion-scope,
+  html:not(.js) .motion-scope * {
+    opacity: 1 !important;
+    transform: none !important;
+    stroke-dashoffset: 0 !important;
+  }
+
+  /* The question nodes' resting breath. */
+  @keyframes breathe {
+    0%,
+    100% {
+      opacity: 0.72;
+      transform: translate3d(0, 0, 0);
+    }
+    50% {
+      opacity: 1;
+      transform: translate3d(0, -5px, 0);
+    }
+  }
+
+  .breathe {
+    animation: breathe var(--breathe-duration, 7s) var(--ease-soft) infinite;
+    animation-delay: var(--breathe-delay, 0s);
+    will-change: transform, opacity;
+  }
+
+  @keyframes twinkle {
+    0%,
+    100% {
+      opacity: 0.15;
+    }
+    50% {
+      opacity: 0.8;
+    }
+  }
+
+  .twinkle {
+    animation: twinkle var(--twinkle-duration, 5s) ease-in-out infinite;
+    animation-delay: var(--twinkle-delay, 0s);
+  }
+
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  /* --- Texture ------------------------------------------------------------
+     Tiled SVG noise as a data URI: one cached 200px tile, no network
+     request, no layout cost, and sharp at every device pixel ratio.
+     This is what stops the parchment bands reading as flat CSS colour. */
+
+  .grain-paper,
+  .grain-film {
+    position: relative;
+  }
+
+  .grain-paper::after,
+  .grain-film::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  /* Paper: multiplied in, so the grain sits *in* the sheet, not on it. */
+  .grain-paper::after {
+    opacity: 0.06;
+    mix-blend-mode: multiply;
+  }
+
+  /* Film: lifted, so dark grounds gain depth instead of muddying. */
+  .grain-film::after {
+    opacity: 0.035;
+    mix-blend-mode: overlay;
+  }
+
+  /* The graticule — a faint chart rule. This is an atlas. */
+  .graticule::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.05;
+    background-image:
+      linear-gradient(to right, var(--color-gold) 1px, transparent 1px),
+      linear-gradient(to bottom, var(--color-gold) 1px, transparent 1px);
+    background-size: 7rem 7rem;
+    mask-image: radial-gradient(75% 65% at 50% 40%, #000, transparent);
+  }
+
+  /* Gold text-glow, for questions set directly into a photographed sky. */
+  .glow-gold {
+    text-shadow:
+      0 0 24px rgb(199 154 78 / 0.55),
+      0 0 60px rgb(199 154 78 / 0.28),
+      0 1px 2px rgb(10 9 8 / 0.9);
+  }
+
+  .glow-ivory {
+    text-shadow:
+      0 0 20px rgb(247 242 232 / 0.3),
+      0 0 52px rgb(199 154 78 / 0.22),
+      0 1px 3px rgb(10 9 8 / 0.95);
+  }
+
+  /* Slow vertical drift for constellation nodes. */
+  @keyframes drift {
+    0%,
+    100% {
+      transform: translate3d(0, 0, 0);
+    }
+    50% {
+      transform: translate3d(0, -7px, 0);
+    }
+  }
+
+  .drift {
+    animation: drift var(--drift-duration, 9s) ease-in-out infinite;
+    animation-delay: var(--drift-delay, 0s);
+    will-change: transform;
+  }
+}
+
+/* ============================================================================
+   THE QUESTION CONSTELLATION
+   Written as plain CSS rather than utilities: the node positions are
+   percentages, so the containing block's height must be unambiguous, and
+   this component is too load-bearing to leave to arbitrary-value parsing.
+   One DOM, two layouts — flow on small screens, constellation from lg up.
+   ========================================================================== */
+
+.cluster {
+  position: relative;
+  width: 100%;
+}
+
+/* Small screens: the constellation would be illegible, so the questions
+   become a centred column set over the same lit field. */
+.cluster-nodes {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.15rem;
+  padding: 2rem 0;
+}
+
+.cluster-lines {
+  display: none;
+}
+
+@media (min-width: 64rem) {
+  .cluster {
+    height: clamp(32rem, 44vw, 40rem);
+  }
+
+  /* The list is the nodes' containing block, so it must carry the height —
+     otherwise their percentage offsets resolve against zero. */
+  .cluster-nodes {
+    display: block;
+    height: 100%;
+    padding: 0;
+  }
+
+  .cluster-lines {
+    display: block;
+  }
+
+  .cluster-node {
+    position: absolute;
+    left: var(--x);
+    top: var(--y);
+    translate: -50% -50%;
+  }
+}
+
+
+/* Reduced motion is honoured absolutely: content appears, nothing moves. */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+
+  .js .reveal:not([data-revealed="true"]) {
+    opacity: 1;
+    transform: none;
+  }
+}
